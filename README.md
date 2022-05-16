@@ -1,9 +1,11 @@
 # Keystone6
-Calendar-Integration on the works
+Calendar-Integration is in the works
 
--To Run the Project 
+-To Run this Project: 
 yarn dev
 
--To Install a Keystone Instance 
+-To Install a Keystone Instance: 
 yarn create keystone-app
 npm init keystone-app
+
+Admin-Credentials:
