@@ -1,13 +1,16 @@
 # Keystone6
-Calendar-Integration is in the works
+# Calendar-Integration is in the works
 
--To Run this Project: 
+# -To Run this Project: 
 cd to \calendarIntegration
- npm run dev 
 
+# To install dependencies
+ npm install 
 
--To Install a Keystone Instance: 
-yarn create keystone-app
+# To start the Project
+ yarn dev 
+
+# This specific Keystone Instance has Appollo-GraphQL installed in it to work on GraphQL 
 
 Admin-Credentials:
 will be Updated
