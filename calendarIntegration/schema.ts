@@ -19,10 +19,6 @@ export const lists: Lists = {
         isFilterable: true,
       }),
       password: password({ validation: { isRequired: true } }),
-      // Relationships allow us to reference other lists. In this case,
-      // we want a user to have many posts, and we are saying that the user
-      // should be referencable by the 'author' field of posts.
-      // Make sure you read the docs to understand how they work: https://keystonejs.com/docs/guides/relationships#understanding-relationships
       posts: relationship({ ref: 'Post.author', many: true }),
     },
     ui: {
@@ -32,6 +28,12 @@ export const lists: Lists = {
     },
   }),
   Post: list({
+    hooks: {
+      validateInput: async ({ operation, resolvedData, addValidationError, context }) => {
+          if (operation === 'create') {
+           console.log('post is going to be created……');
+         }
+    }},
     fields: {
       title: text(),
       status: select({

@@ -22,7 +22,8 @@ will be Updated
  -Docs
   https://www.geeksforgeeks.org/how-to-integrate-google-calendar-in-node-js/
   https://developers.google.com/calendar/api/quickstart/js
-
+  https://developers.google.com/calendar/api/v3/reference?apix=true
+  
  -YT
   https://www.youtube.com/watch?v=dFaV95gS_0M
   https://www.youtube.com/watch?v=c2b2yUNWFzI
