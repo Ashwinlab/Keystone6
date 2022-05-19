@@ -90,8 +90,14 @@ export const lists: Lists = {
     hooks: {
       validateInput: async ({ operation, resolvedData, addValidationError, context }) => {
           if (operation === 'create') {
-           console.log('Calendar is Created');
-           
+          //  console.log('Calendar is Created');
+          // console.log(resolvedData.email,resolvedData.content,resolvedData.publishDate);
+          // let email=resolvedData.email,content=resolvedData.content,Date=resolvedData.publishDate;
+          // var d = new Date(Date);
+          // console.log(d.getUTCHours()); // Hours
+          // console.log(d.getUTCMinutes());
+          // console.log(d.getUTCSeconds());
+          // console.log(email,content,d);
          }
 }}
   }),

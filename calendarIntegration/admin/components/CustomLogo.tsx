@@ -5,7 +5,7 @@ import { jsx, H3 } from '@keystone-ui/core';
 
 export const CustomLogo = () => {
   return (
-    <H3>
+    <H2>
       <Link href="/" passHref>
         <a
           css={{
@@ -21,6 +21,6 @@ export const CustomLogo = () => {
          TimeLine ERP
         </a>
       </Link>
-    </H3>
+    </H2>
   );
 };
