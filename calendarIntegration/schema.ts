@@ -53,7 +53,6 @@ export const lists: Lists = {
         links: true,
         dividers: true,
       }),
-      // publishDate: timestamp(),
       calendar: relationship({ ref: 'Calendar.posts', many: false }),
       author: relationship({
         ref: 'User.posts',
@@ -88,6 +87,13 @@ export const lists: Lists = {
       publishDate: timestamp(),
       posts: relationship({ ref: 'Post.calendar', many: true }),
     },
+    hooks: {
+      validateInput: async ({ operation, resolvedData, addValidationError, context }) => {
+          if (operation === 'create') {
+           console.log('Calendar is Created');
+           
+         }
+}}
   }),
   Tag: list({
     ui: {
@@ -96,8 +102,7 @@ export const lists: Lists = {
     fields: {
       name: text(),
       posts: relationship({ ref: 'Post.tags'||'Post.calendar', many: true }),
-      // posts: relationship({ ref: 'Post.calendar', many: true }),
-    },
+        },
   }),
 };
 
