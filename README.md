@@ -1,19 +1,18 @@
-# Keystone6
-# Calendar-Integration is in the works
+# Admin-Credentials:
+userName: ashwin@lablambworks.com
+pwd: Arkam19971994
 
 # -To Run this Project: 
 cd to \calendarIntegration
 
-# To install dependencies
- npm install 
+# To start and install dependencies the Project (use Yarn commands)
+ yarn dev
 
-# To start the Project
- yarn dev 
+ npm install 
 
 # This specific Keystone Instance has Appollo-GraphQL installed in it to work on GraphQL 
 
-Admin-Credentials:
-will be Updated
+
 
 # Docs to help the Integration of Calendar API
 

@@ -90,15 +90,65 @@ export const lists: Lists = {
     hooks: {
       validateInput: async ({ operation, resolvedData, addValidationError, context }) => {
           if (operation === 'create') {
-          //  console.log('Calendar is Created');
-          // console.log(resolvedData.email,resolvedData.content,resolvedData.publishDate);
-          // let email=resolvedData.email,content=resolvedData.content,Date=resolvedData.publishDate;
-          // var d = new Date(Date);
-          // console.log(d.getUTCHours()); // Hours
-          // console.log(d.getUTCMinutes());
-          // console.log(d.getUTCSeconds());
-          // console.log(email,content,d);
-         }
+            let keystoneemail=resolvedData.email,keystonecontent=resolvedData.content,keystoneDate=resolvedData.publishDate,keystoneName=resolvedData.name;
+          console.log(keystonecontent,keystoneemail,keystoneDate)
+           console.log('Calendar is Created');
+
+          var outlook = require('node-outlook');
+          
+          const newEvent = {
+            subject: 'Calendar Invite',
+            body: {
+              contentType: 'HTML',
+              content: keystonecontent
+            },
+            start: {
+                dateTime: keystoneDate,
+                timeZone: 'Pacific Standard Time'
+            },
+            end: {
+                dateTime: '+30:00',
+                timeZone: 'Pacific Standard Time'
+            },
+            location: {
+                displayName: 'Admin'
+            },
+            attendees: [
+              {
+                emailAddress: {
+                  address: 'ashwinlamblabs@outlook.com',
+                  name: keystoneName
+                },
+                type: 'required'
+              }
+            ],
+          };
+          var outlookClient = new outlook.Microsoft.OutlookServices.Client('https://outlook.office.com/api/v2.0',authHelper.getAccessTokenFn('https://outlook.office.com/', session));
+
+          let createEventParameters = {
+            token: outlookClient,
+            event: newEvent
+        }
+        insertEvent(event)
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+        // outlook.base.setApiEndpoint('https://outlook.office.com/api/v2.0');
+        // // Set the anchor mailbox to the user's SMTP address
+        // outlook.base.setAnchorMailbox('ashwin.lablambworks@outlook.com');
+
+        // outlook.calendar.createEvent(createEventParameters, function (error, event) {
+        //     if(error) {
+        //         console.log(error);                 
+        //     } else {
+        //         console.log(event);                         
+        //     }
+        // })
+      }
 }}
   }),
   Tag: list({
