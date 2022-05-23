@@ -126,7 +126,7 @@ type Post {
   title: String
   status: String
   content: Post_content_Document
-  calendar: Calendar
+  publishDate: DateTime
   author: User
   tags(
     where: TagWhereInput! = {}
@@ -141,6 +141,9 @@ type Post_content_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
 }
 
+scalar DateTime
+  @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
+
 input PostWhereUniqueInput {
   id: ID
 }
@@ -152,7 +155,7 @@ input PostWhereInput {
   id: IDFilter
   title: StringFilter
   status: StringNullableFilter
-  calendar: CalendarWhereInput
+  publishDate: DateTimeNullableFilter
   author: UserWhereInput
   tags: TagManyRelationFilter
 }
@@ -185,6 +188,17 @@ input NestedStringNullableFilter {
   not: NestedStringNullableFilter
 }
 
+input DateTimeNullableFilter {
+  equals: DateTime
+  in: [DateTime!]
+  notIn: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  gt: DateTime
+  gte: DateTime
+  not: DateTimeNullableFilter
+}
+
 input TagManyRelationFilter {
   every: TagWhereInput
   some: TagWhereInput
@@ -195,21 +209,16 @@ input PostOrderByInput {
   id: OrderDirection
   title: OrderDirection
   status: OrderDirection
+  publishDate: OrderDirection
 }
 
 input PostUpdateInput {
   title: String
   status: String
   content: JSON
-  calendar: CalendarRelateToOneForUpdateInput
+  publishDate: DateTime
   author: UserRelateToOneForUpdateInput
   tags: TagRelateToManyForUpdateInput
-}
-
-input CalendarRelateToOneForUpdateInput {
-  create: CalendarCreateInput
-  connect: CalendarWhereUniqueInput
-  disconnect: Boolean
 }
 
 input UserRelateToOneForUpdateInput {
@@ -234,14 +243,9 @@ input PostCreateInput {
   title: String
   status: String
   content: JSON
-  calendar: CalendarRelateToOneForCreateInput
+  publishDate: DateTime
   author: UserRelateToOneForCreateInput
   tags: TagRelateToManyForCreateInput
-}
-
-input CalendarRelateToOneForCreateInput {
-  create: CalendarCreateInput
-  connect: CalendarWhereUniqueInput
 }
 
 input UserRelateToOneForCreateInput {
@@ -260,21 +264,10 @@ type Calendar {
   email: String
   content: String
   publishDate: DateTime
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Post!]
-  postsCount(where: PostWhereInput! = {}): Int
 }
-
-scalar DateTime
-  @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
 
 input CalendarWhereUniqueInput {
   id: ID
-  email: String
 }
 
 input CalendarWhereInput {
@@ -286,18 +279,6 @@ input CalendarWhereInput {
   email: StringFilter
   content: StringFilter
   publishDate: DateTimeNullableFilter
-  posts: PostManyRelationFilter
-}
-
-input DateTimeNullableFilter {
-  equals: DateTime
-  in: [DateTime!]
-  notIn: [DateTime!]
-  lt: DateTime
-  lte: DateTime
-  gt: DateTime
-  gte: DateTime
-  not: DateTimeNullableFilter
 }
 
 input CalendarOrderByInput {
@@ -313,7 +294,6 @@ input CalendarUpdateInput {
   email: String
   content: String
   publishDate: DateTime
-  posts: PostRelateToManyForUpdateInput
 }
 
 input CalendarUpdateArgs {
@@ -326,7 +306,6 @@ input CalendarCreateInput {
   email: String
   content: String
   publishDate: DateTime
-  posts: PostRelateToManyForCreateInput
 }
 
 type Tag {
