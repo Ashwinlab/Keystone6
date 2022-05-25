@@ -9,13 +9,13 @@ import {
 import { document } from "@keystone-6/fields-document";
 import { Lists } from ".keystone/types";
 
-import { calendar_v3, google } from 'googleapis';
-import { OAuth2Client, Credentials } from 'google-auth-library';
-import Calendar = calendar_v3.Calendar;
-// import Schema$Event = calendar_v3.Schema$Event;
+// import { calendar_v3, google } from 'googleapis';
+// import { OAuth2Client, Credentials } from 'google-auth-library';
+// import Calendar = calendar_v3.Calendar;
+// // import Schema$Event = calendar_v3.Schema$Event;
 
-const auth: OAuth2Client = new google.auth.OAuth2(...);
-const calendar: Calendar = google.calendar({ version: 'v3', auth });
+// const auth: OAuth2Client = new google.auth.OAuth2(...);
+// const calendar: Calendar = google.calendar({ version: 'v3', auth });
 // const schemaEvent: Schema$Event = (await calendar.events.get({ calendarId, eventId })).data;
 
 export const lists: Lists = {
@@ -94,8 +94,8 @@ export const lists: Lists = {
           const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
           const calendarId = process.env.CALENDAR_ID;
 
-          // const SCOPES = "https://www.googleapis.com/auth/calendar";
-          // const calendar = google.calendar({ version: "v3" });
+          const SCOPES = "https://www.googleapis.com/auth/calendar";
+          const calendar = google.calendar({ version: "v3" });
 
           const auth = new google.auth.JWT(
             CREDENTIALS.client_email,
