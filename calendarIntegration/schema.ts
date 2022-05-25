@@ -11,6 +11,7 @@ import { Lists } from ".keystone/types";
 import { google } from 'googleapis';
 require("dotenv").config();
 
+
 const createEvent = (name,date) => {
   console.log(name);
   console.log(" in createEvent");
@@ -27,6 +28,7 @@ const createEvent = (name,date) => {
     SCOPES
   );
   
+
   let endDate = new Date(new Date(date).setHours(date.getHours()+1));
 
   const insertEvent = async (event:any) => {
@@ -59,6 +61,7 @@ const createEvent = (name,date) => {
         'timeZone': 'Asia/Kolkata'
     }
   };
+
   insertEvent(event)
     .then((res) => {
         console.log(`------>`,res);
@@ -68,6 +71,7 @@ const createEvent = (name,date) => {
     });
   
 }
+
 export const lists: Lists = {
   User: list({
     fields: {
