@@ -27,7 +27,6 @@ model Post {
   publishDate DateTime?
   author      User?     @relation("Post_author", fields: [authorId], references: [id])
   authorId    String?   @map("author")
-  tags        Tag[]     @relation("Post_tags")
 
   @@index([authorId])
 }
@@ -35,13 +34,5 @@ model Post {
 model Calendar {
   id          String    @id @default(cuid())
   name        String    @default("")
-  email       String    @default("")
-  content     String    @default("")
   publishDate DateTime?
-}
-
-model Tag {
-  id    String @id @default(cuid())
-  name  String @default("")
-  posts Post[] @relation("Post_tags")
 }

@@ -128,13 +128,6 @@ type Post {
   content: Post_content_Document
   publishDate: DateTime
   author: User
-  tags(
-    where: TagWhereInput! = {}
-    orderBy: [TagOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Tag!]
-  tagsCount(where: TagWhereInput! = {}): Int
 }
 
 type Post_content_Document {
@@ -157,7 +150,6 @@ input PostWhereInput {
   status: StringNullableFilter
   publishDate: DateTimeNullableFilter
   author: UserWhereInput
-  tags: TagManyRelationFilter
 }
 
 input StringNullableFilter {
@@ -199,12 +191,6 @@ input DateTimeNullableFilter {
   not: DateTimeNullableFilter
 }
 
-input TagManyRelationFilter {
-  every: TagWhereInput
-  some: TagWhereInput
-  none: TagWhereInput
-}
-
 input PostOrderByInput {
   id: OrderDirection
   title: OrderDirection
@@ -218,20 +204,12 @@ input PostUpdateInput {
   content: JSON
   publishDate: DateTime
   author: UserRelateToOneForUpdateInput
-  tags: TagRelateToManyForUpdateInput
 }
 
 input UserRelateToOneForUpdateInput {
   create: UserCreateInput
   connect: UserWhereUniqueInput
   disconnect: Boolean
-}
-
-input TagRelateToManyForUpdateInput {
-  disconnect: [TagWhereUniqueInput!]
-  set: [TagWhereUniqueInput!]
-  create: [TagCreateInput!]
-  connect: [TagWhereUniqueInput!]
 }
 
 input PostUpdateArgs {
@@ -245,7 +223,6 @@ input PostCreateInput {
   content: JSON
   publishDate: DateTime
   author: UserRelateToOneForCreateInput
-  tags: TagRelateToManyForCreateInput
 }
 
 input UserRelateToOneForCreateInput {
@@ -253,16 +230,9 @@ input UserRelateToOneForCreateInput {
   connect: UserWhereUniqueInput
 }
 
-input TagRelateToManyForCreateInput {
-  create: [TagCreateInput!]
-  connect: [TagWhereUniqueInput!]
-}
-
 type Calendar {
   id: ID!
   name: String
-  email: String
-  content: String
   publishDate: DateTime
 }
 
@@ -276,23 +246,17 @@ input CalendarWhereInput {
   NOT: [CalendarWhereInput!]
   id: IDFilter
   name: StringFilter
-  email: StringFilter
-  content: StringFilter
   publishDate: DateTimeNullableFilter
 }
 
 input CalendarOrderByInput {
   id: OrderDirection
   name: OrderDirection
-  email: OrderDirection
-  content: OrderDirection
   publishDate: OrderDirection
 }
 
 input CalendarUpdateInput {
   name: String
-  email: String
-  content: String
   publishDate: DateTime
 }
 
@@ -303,54 +267,7 @@ input CalendarUpdateArgs {
 
 input CalendarCreateInput {
   name: String
-  email: String
-  content: String
   publishDate: DateTime
-}
-
-type Tag {
-  id: ID!
-  name: String
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Post!]
-  postsCount(where: PostWhereInput! = {}): Int
-}
-
-input TagWhereUniqueInput {
-  id: ID
-}
-
-input TagWhereInput {
-  AND: [TagWhereInput!]
-  OR: [TagWhereInput!]
-  NOT: [TagWhereInput!]
-  id: IDFilter
-  name: StringFilter
-  posts: PostManyRelationFilter
-}
-
-input TagOrderByInput {
-  id: OrderDirection
-  name: OrderDirection
-}
-
-input TagUpdateInput {
-  name: String
-  posts: PostRelateToManyForUpdateInput
-}
-
-input TagUpdateArgs {
-  where: TagWhereUniqueInput!
-  data: TagUpdateInput!
-}
-
-input TagCreateInput {
-  name: String
-  posts: PostRelateToManyForCreateInput
 }
 
 """
@@ -383,12 +300,6 @@ type Mutation {
   updateCalendars(data: [CalendarUpdateArgs!]!): [Calendar]
   deleteCalendar(where: CalendarWhereUniqueInput!): Calendar
   deleteCalendars(where: [CalendarWhereUniqueInput!]!): [Calendar]
-  createTag(data: TagCreateInput!): Tag
-  createTags(data: [TagCreateInput!]!): [Tag]
-  updateTag(where: TagWhereUniqueInput!, data: TagUpdateInput!): Tag
-  updateTags(data: [TagUpdateArgs!]!): [Tag]
-  deleteTag(where: TagWhereUniqueInput!): Tag
-  deleteTags(where: [TagWhereUniqueInput!]!): [Tag]
   endSession: Boolean!
   authenticateUserWithPassword(
     email: String!
@@ -443,14 +354,6 @@ type Query {
   ): [Calendar!]
   calendar(where: CalendarWhereUniqueInput!): Calendar
   calendarsCount(where: CalendarWhereInput! = {}): Int
-  tags(
-    where: TagWhereInput! = {}
-    orderBy: [TagOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Tag!]
-  tag(where: TagWhereUniqueInput!): Tag
-  tagsCount(where: TagWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }
