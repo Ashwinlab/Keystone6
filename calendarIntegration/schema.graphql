@@ -233,7 +233,7 @@ input UserRelateToOneForCreateInput {
 type Calendar {
   id: ID!
   name: String
-  publishDate: DateTime
+  Date: DateTime
 }
 
 input CalendarWhereUniqueInput {
@@ -246,18 +246,18 @@ input CalendarWhereInput {
   NOT: [CalendarWhereInput!]
   id: IDFilter
   name: StringFilter
-  publishDate: DateTimeNullableFilter
+  Date: DateTimeNullableFilter
 }
 
 input CalendarOrderByInput {
   id: OrderDirection
   name: OrderDirection
-  publishDate: OrderDirection
+  Date: OrderDirection
 }
 
 input CalendarUpdateInput {
   name: String
-  publishDate: DateTime
+  Date: DateTime
 }
 
 input CalendarUpdateArgs {
@@ -267,7 +267,7 @@ input CalendarUpdateArgs {
 
 input CalendarCreateInput {
   name: String
-  publishDate: DateTime
+  Date: DateTime
 }
 
 """

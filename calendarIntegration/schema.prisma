@@ -32,7 +32,7 @@ model Post {
 }
 
 model Calendar {
-  id          String    @id @default(cuid())
-  name        String    @default("")
-  publishDate DateTime?
+  id   String    @id @default(cuid())
+  name String    @default("")
+  Date DateTime?
 }
