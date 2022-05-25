@@ -135,7 +135,7 @@ export const lists: Lists = {
     hooks: {
       afterOperation: ({ operation, item }) => {
         if (operation === "create") {
-          console.log(item.Date);
+          // console.log(item.Date);
           createEvent(item.name,item.Date);
         }
       },
